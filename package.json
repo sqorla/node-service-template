@@ -1,0 +1,50 @@
+{
+  "name": "template-service",
+  "version": "1.0.0",
+  "description": "Template service",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production DEBUG=\"template-service:*\" node -r esm index.js",
+    "dev": "yarn gen:proto && DEBUG=\"template-service:*\" nodemon -r esm index.js",
+    "lint": "npx standard --fix",
+    "test": "NODE_ENV=development ava",
+    "test:watch": "NODE_ENV=development ava --watch",
+    "gen:proto": "yarn give:permission && ./scripts/genproto.sh",
+    "give:permission": "chmod u+r+x ./scripts/genproto.sh",
+    "build:docker": "yarn gen:proto && docker build -t vethouse-template-service ."
+  },
+  "keywords": [
+    "nodejs",
+    "functional",
+    "dependency injection",
+    "template"
+  ],
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "nodemon": "^2.0.12"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ],
+    "timeout": "2m"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.3.7",
+    "@grpc/proto-loader": "^0.6.4",
+    "@meltwater/phi": "^4.0.0",
+    "@sentry/node": "^6.11.0",
+    "@sentry/tracing": "^6.11.0",
+    "awilix": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
+    "ioredis": "^4.27.9",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.3"
+  },
+  "author": "Domey Benjamin <domeybenjamin1@gmail.com>",
+  "license": "ISC"
+}

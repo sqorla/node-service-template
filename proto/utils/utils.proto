@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package utils;
+
+// The Utils service definition.
+service UtilsService {
+  rpc GenerateRandomString (GenerateRandomStringRequest) returns (GenerateRandomStringResponse) {}
+  rpc GenerateVerificationCode (GenerateVerificationCodeRequest) returns (GenerateVerificationCodeResponse) {}
+  rpc TransformPhoneNumber (TransformPhoneNumberRequest) returns (TransformPhoneNumberResponse) {}
+  rpc HashPassword (HashPasswordRequest) returns (HashPasswordResponse) {}
+  rpc ComparePassword (ComparePasswordRequest) returns (ComparePasswordResponse) {}
+  rpc SignAdminPayload (SignAdminPayloadRequest) returns (SignPayloadResponse) {}
+  rpc VerifyPayload (VerifyPayloadRequest) returns (VerifyPayloadResponse) {}
+}
+
+// for random string generation
+message GenerateRandomStringRequest {
+  int32 length = 1;
+}
+
+message GenerateRandomStringResponse {
+  string result = 1;
+}
+
+// for verifying code
+message GenerateVerificationCodeRequest {}
+
+message GenerateVerificationCodeResponse {
+  string result = 1;
+}
+
+// for transforming phone number
+message TransformPhoneNumberRequest {
+  string phone = 1;
+}
+
+message TransformPhoneNumberResponse {
+  string result = 1;
+}
+
+// for hashing password
+message HashPasswordRequest {
+  string password = 1;
+}
+
+message HashPasswordResponse {
+  string result = 1;
+}
+
+// for comparing password
+message ComparePasswordRequest {
+  string password = 1;
+  string hashedPassword = 2;
+}
+
+message ComparePasswordResponse {
+  bool result = 1;
+}
+
+// for signing payload
+message SignAdminPayloadRequest {
+  string id = 1;
+  string type = 2;
+}
+
+message SignPayloadResponse {
+  string result = 1;
+}
+
+// for verifying payload
+message VerifyPayloadRequest {
+  string token = 1;
+}
+
+message VerifyPayloadResponse {
+  SignAdminPayloadRequest result = 1;
+}
